@@ -1,31 +1,31 @@
 "use strict";
 
-var magic = require("./lib/magic");
-var text  =
-  "\\             \n" +
-  " \\ji          \n" +
-  " /.(((         \n" +
-  "(,/\"(((__,--. \n" +
-  "    \\  ) _( /{\n" +
-  "    !|| \" :|| \n" +
-  "    !||   :||  \n" +
-  "    '''   '''    "
-;
+var express = require("express");
+var bodyParser = require('body-parser');
+var logger = require("morgan");
+var env = process.env.NODE_ENV || 'development';
+var app = express();
+var port = env == "production" ? 80 : 3000;
+
+var magic = require("./app/magic");
+
+app.set('view engine', 'jade');
+app.set('view options', { pretty: true });
+
+app.use(logger());
+app.use(bodyParser());
+app.use(express.static(__dirname + '/public'));
 
 
-// var text = "\
-// ******************\n\
-// *                *\n\
-// *                *\n\
-// *                *\n\
-// *                *\n\
-// *                *\n\
-// *                *\n\
-// ******************\n\
-// ";
+app
+  .route("/")
+    .get(function(req, res) { res.render("index"); })
+    .post(function(req, res) {
+      magic.create(req.param("template"), function(data) {
+        res.end(data, { 'Content-Type': 'image/gif' });
+      });
+    });
 
-magic.create(text, function(data) {
-  var fs = require("fs");
-  console.log(data.toString("base64").length);
-  fs.writeFile("test.gif", data);
-});
+app.listen(port);
+
+console.log("Listening on port: ", port)
