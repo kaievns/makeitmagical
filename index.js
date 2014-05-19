@@ -24,4 +24,8 @@ var text  =
 // ******************\n\
 // ";
 
-magic.create(text, "test.gif");
+magic.create(text, function(data) {
+  var fs = require("fs");
+  console.log(data.toString("base64").length);
+  fs.writeFile("test.gif", data);
+});
