@@ -7,8 +7,9 @@ var less = require('less-middleware');
 var env = process.env.NODE_ENV || 'development';
 var app = express();
 var port = env == "production" ? 80 : 3000;
+var db = require("./config/database")(env);
 
-var magic = require("./app/magic");
+var Picture = require('./app/models/picture');
 
 app.set('view engine', 'jade');
 app.locals.pretty = true;
@@ -18,14 +19,23 @@ app.use(bodyParser());
 app.use(less(__dirname + "/public"))
 app.use(express.static(__dirname + '/public'));
 
-app
-  .route("/")
-    .get(function(req, res) { res.render("index"); })
-    .post(function(req, res) {
-      magic.create(req.param("template"), function(data) {
-        res.end(data, { 'Content-Type': 'image/gif' });
-      });
-    });
+app.get("/", function(req, res) { res.render("index"); })
+app.post("/", function(req, res) {
+  Picture.findOrCreate(req.param("template"), function(picture) {
+    res.redirect("/p/"+ picture.hash);
+  });
+});
+app.get("/p/:hash.gif", function(req, res) {
+  Picture.find(req.param("hash"), function(picture) {
+    res.end(picture.data, { 'Content-Type': 'image/gif' });
+  });
+});
+app.get("/p/:hash", function(req, res) {
+  Picture.find(req.param("hash"), function(picture) {
+    res.render("show", {picture: picture});
+  });
+});
+
 
 app.listen(port);
 
