@@ -1,23 +1,17 @@
-doctype html
-html
-  head
-    title Make It Magical
-    link(rel="stylesheet", href="/application.css")
-    - if (env == "development")
-      script(src="http://localhost:35729/livereload.js")
+extends layout
 
-  body
-    h1 Make It Magical
+block content
+  h1 Make It Magical
 
-    form(action="/", method="post")
-      textarea(name="template", rows=20, cols=80)
-        | \
-        |  \ji
-        |  /.(((
-        | (,/"(((__,--.
-        |     \  ) _( /{
-        |     !|| " :||
-        |     !||   :||
-        |     '''   '''
+  form(action="/", method="post")
+    textarea(name="template", rows=20, cols=80)
+      | \
+      |  \ji
+      |  /.(((
+      | (,/"(((__,--.
+      |     \  ) _( /{
+      |     !|| " :||
+      |     !||   :||
+      |     '''   '''
 
-      input(type="submit", value="Magic")
+    input(type="submit", value="Magic")

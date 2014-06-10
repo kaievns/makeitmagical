@@ -1,15 +1,9 @@
-doctype html
-html
-  head
-    title Make It Magical
-    link(rel="stylesheet", href="/application.css")
-    - if (env == "development")
-      script(src="http://localhost:35729/livereload.js")
+extends layout
 
-  body
-    h1 Here you go!
+block content
+  h1 Here you go!
 
-    p
-      img(src="/p/"+picture.hash+".gif")
-    p
-      a(href="/") Again!
+  p
+    img(src="/p/"+picture.hash+".gif")
+  p
+    a(href="/") Again!

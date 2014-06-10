@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title Make It Magical
+    link(rel="stylesheet", href="/application.css")
+    - if (env == "development")
+      script(src="http://localhost:35729/livereload.js")
+
+  body
+    block content
