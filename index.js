@@ -17,10 +17,10 @@ app.locals.env = env;
 
 app.use(logger());
 app.use(bodyParser());
-app.use(less(__dirname + "/public"))
+app.use(less(__dirname + "/public"));
 app.use(express.static(__dirname + '/public'));
 
-app.get("/", function(req, res) { res.render("index"); })
+app.get("/", function(req, res) { res.render("index"); });
 app.post("/", function(req, res) {
   Picture.findOrCreate(req.param("template"), function(picture) {
     res.redirect("/p/"+ picture.hash);

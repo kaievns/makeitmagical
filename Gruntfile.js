@@ -3,7 +3,8 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         reporter: require('jshint-stylish'),
-        node: true
+        node: true,
+        boss: true
       },
       files: ['index.js', 'app/*.js', 'config/*.js', 'public/*.js']
     },

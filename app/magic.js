@@ -9,7 +9,7 @@ exports.create = function(text, callback) {
   animate.create(slides, function(data) {
     callback(data);
   });
-}
+};
 
 function build_slides(text, size) {
   var slides = [];
