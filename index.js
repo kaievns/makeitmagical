@@ -13,6 +13,7 @@ var Picture = require('./app/models/picture');
 
 app.set('view engine', 'jade');
 app.locals.pretty = true;
+app.locals.env = env;
 
 app.use(logger());
 app.use(bodyParser());
@@ -37,6 +38,8 @@ app.get("/p/:hash", function(req, res) {
 });
 
 
-app.listen(port);
+app.listen(port, function() {
+  console.log("Listening on port: ", port);
+});
 
-console.log("Listening on port: ", port)
+module.exports = app;
