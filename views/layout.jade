@@ -7,4 +7,16 @@ html
       script(src="http://localhost:35729/livereload.js")
 
   body
-    block content
+    header
+      .paddings
+        a.logo(href="./") Make it Magical
+        a.ribbon.danger(href="..", title="Fork Me On Github")
+
+    main
+      .paddings
+        article
+          block content
+
+    footer
+      .paddings
+        p Copyright (C) 2014-2015 Nikolay Nemshilov

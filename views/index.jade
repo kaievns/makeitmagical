@@ -1,17 +1,18 @@
 extends layout
 
 block content
-  h1 Make It Magical
 
-  form(action="/", method="post")
-    textarea(name="template", rows=20, cols=80)
-      | \
-      |  \ji
-      |  /.(((
-      | (,/"(((__,--.
-      |     \  ) _( /{
-      |     !|| " :||
-      |     !||   :||
-      |     '''   '''
+  form(class="template" action="/", method="post")
+    p
+      textarea(name="template")
+        | \
+        |  \ji
+        |  /.(((
+        | (,/"(((__,--.
+        |     \  ) _( /{
+        |     !|| " :||
+        |     !||   :||
+        |     '''   '''
 
-    input(type="submit", value="Magic")
+    p.buttons
+      button(type="submit") Make it magical!

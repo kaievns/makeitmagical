@@ -9,6 +9,9 @@ module.exports = function(grunt) {
       files: ['index.js', 'app/*.js', 'config/*.js', 'public/*.js']
     },
     less: {
+      options: {
+        paths: ["./public", "./bower_components/pain.less.css/src"]
+      },
       compile: {
         files: {
           "public/application.css" : "public/application.less"

@@ -6,7 +6,7 @@ var logger = require("morgan");
 var less = require('less-middleware');
 var env = process.env.NODE_ENV || 'development';
 var app = express();
-var port = env == "production" ? 80 : 3000;
+var port = env == "production" ? 80 : 8000;
 var db = require("./config/database")(env);
 
 var Picture = require('./app/models/picture');
@@ -17,8 +17,15 @@ app.locals.env = env;
 
 app.use(logger());
 app.use(bodyParser());
-app.use(less(__dirname + "/public"));
+app.use(less(__dirname + "/public", {
+  parser: {
+    paths: [
+      "./public", "./bower_components/pain.less.css/src"
+    ]
+  }
+}));
 app.use(express.static(__dirname + '/public'));
+
 
 app.get("/", function(req, res) { res.render("index"); });
 app.post("/", function(req, res) {
