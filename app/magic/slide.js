@@ -12,8 +12,8 @@ font_name    = __dirname + "/font.ttf",
 font_size    = 50,
 text_width   = font_size * 0.6,
 text_height  = font_size * 1.0,
-padding_x    = 4, // in chars
-padding_y    = 2  // in chars
+padding_x    = 2, // in chars
+padding_y    = 1  // in chars
 
 ;
 
@@ -31,6 +31,7 @@ function magicify(text, background) {
 
 function remove_empty_lines(text) {
   return text
+    .replace(/\r\n/g, "\n")
     .replace(/^(\s*?\n)([ \t]*[^\s])/m, "$2")
     .replace(/([^\s][ \t]*)(\n\s*)$/m, "$1")
     .replace(/\s+(\n|$)/mg, "$1");
