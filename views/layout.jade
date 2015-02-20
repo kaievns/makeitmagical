@@ -18,3 +18,34 @@ html
     footer
       .paddings
         p Copyright (C) 2014-2015 <a href="http://nikolay.theosom.com" target="_blank">Nikolay Nemshilov</a>
+        
+      script.
+        var prev_color = null;
+        function random_color() {
+          var available_colors = "#f00 #0f0 #00f #ff0 #0ff #f0f #fff".split(" ");
+          var new_color = prev_color;
+          
+          while (new_color == prev_color) {
+            new_color = available_colors[
+              ~~(Math.random() * available_colors.length)
+            ];
+          }
+          
+          prev_color = new_color;
+
+          return new_color;
+        }
+        
+        var logo = document.querySelector("a.logo");
+        logo.innerHTML = logo.innerText.split("").map(function(letter) {
+          return "<span>"+ letter + "</span>";
+        }).join("");
+        
+        window.setInterval(function() {
+          var letters = logo.querySelectorAll("span");
+          
+          for (var i=0; i < letters.length; i++) {
+            letters[i].style.color = random_color();
+          }
+        }, 400);
+        

@@ -75,7 +75,7 @@ function draw(text, image) {
   }
 }
 
-
+var prev_color = null;
 function random_color() {
   var available_colors = [
     '#ff0000',
@@ -86,8 +86,15 @@ function random_color() {
     '#ff00ff',
     '#ffffff'
   ];
+  var new_color = prev_color;
 
-  return available_colors[
-    ~~(Math.random() * available_colors.length)
-  ];
+  while (new_color == prev_color) {
+    new_color = available_colors[
+      ~~(Math.random() * available_colors.length)
+    ];
+  }
+
+  prev_color = new_color;
+
+  return new_color;
 }
