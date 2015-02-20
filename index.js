@@ -12,7 +12,7 @@ var db = require("./config/database")(env);
 var Picture = require('./app/models/picture');
 
 app.set('view engine', 'jade');
-app.locals.pretty = true;
+app.locals.pretty = false;
 app.locals.env = env;
 
 app.use(logger());

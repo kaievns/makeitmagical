@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  p
-    img(class="display" src="/p/"+picture.hash+".gif")
-  p
-    a(href="/") Again!
+  div.display
+    p
+      img(src="/p/"+picture.hash+".gif")
+    p
+      a(href="/") Again!
