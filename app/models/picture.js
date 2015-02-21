@@ -6,7 +6,7 @@ var db = global.db;
 var pictures = db.collection("pictures");
 var Picture = module.exports = {};
 
-pictures.ensureIndex(["hash", "template"]);
+pictures.ensureIndex(["hash"]);
 
 Picture.find = function(hash, callback) {
   pictures.findOne({hash: hash}, function(err, picture) {
@@ -23,9 +23,10 @@ Picture.find = function(hash, callback) {
 Picture.create = function(template, callback) {
   magic.create(template, function(buffer) {
     var data = {
-      hash: generate_hash(template),
+      hash:     generate_hash(template),
       template: template,
-      data: buffer.toString("base64")
+      data:     buffer.toString("base64"),
+      rating:   0
     };
 
     pictures.save(data, function(err) {

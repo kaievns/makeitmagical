@@ -35,13 +35,24 @@ app.post("/", function(req, res) {
 });
 app.get("/p/:hash.gif", function(req, res) {
   Picture.find(req.param("hash"), function(picture) {
-    res.end(picture.data, { 'Content-Type': 'image/gif' });
+    if (picture) {
+      res.end(picture.data, { 'Content-Type': 'image/gif' });
+    } else {
+      res.end(null, {status: 404});
+    }
   });
 });
 app.get("/p/:hash", function(req, res) {
   Picture.find(req.param("hash"), function(picture) {
-    res.render("show", {picture: picture});
+    if (picture) {
+      res.render("show", {picture: picture});
+    } else {
+      res.render("404", {status: 404});
+    }
   });
+});
+app.get("/*", function(req, res) {
+  res.render("404", {status: 404});
 });
 
 
