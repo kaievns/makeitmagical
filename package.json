@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node --harmony ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.2.0",
+    "bower": "^1.3.12",
     "express": "^4.2.0",
     "gm": "^1.16.0",
     "jade": "^1.3.1",

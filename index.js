@@ -6,7 +6,7 @@ var logger = require("morgan");
 var less = require('less-middleware');
 var env = process.env.NODE_ENV || 'development';
 var app = express();
-var port = env == "production" ? 80 : 8000;
+var port = process.env.PORT || 8000;
 var db = require("./config/database")(env);
 
 var Picture = require('./app/models/picture');
