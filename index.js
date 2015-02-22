@@ -17,7 +17,7 @@ app.locals.env = env;
 
 app.use(logger());
 app.use(bodyParser());
-app.use(less(__dirname + "/public", {
+env != 'production' && app.use(less(__dirname + "/public", {
   parser: {
     paths: [
       "./public", "./bower_components/pain.less.css/src"

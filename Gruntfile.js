@@ -18,6 +18,21 @@ module.exports = function(grunt) {
         }
       }
     },
+    autoprefixer: {
+      options: {
+        browsers: ["last 2 versions"]
+      },
+      production: {
+        src: "./public/application.css"
+      }
+    },
+    cssmin: {
+      production: {
+        files: {
+          './public/application.css' : ['./public/application.css']
+        }
+      }
+    },
     watch: {
       options: {
         livereload: true,
@@ -40,4 +55,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+  grunt.registerTask('build', ['less:compile', 'autoprefixer:production', 'cssmin:production']);
 };
